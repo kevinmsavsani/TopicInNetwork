@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3c15d5d6-5160-4798-aba5-a6fbbccb42a7" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ProjectId" id="1YAhSum9dYeIDtpLGfFxmUPenim" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.CoronavirusInspection">
+    <configuration name="CoronavirusInspection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CoronavirusInspection" />
+      <module name="Assignment1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Poisson" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Poisson" />
+      <module name="Assignment1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PoissonProcess" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="PoissonProcess" />
+      <module name="Assignment1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PoissonServiceTime" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="PoissonServiceTime" />
+      <module name="Assignment1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.CoronavirusInspection" />
+        <item itemvalue="Application.PoissonServiceTime" />
+        <item itemvalue="Application.Poisson" />
+        <item itemvalue="Application.PoissonProcess" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3c15d5d6-5160-4798-aba5-a6fbbccb42a7" name="Default Changelist" comment="" />
+      <created>1582391309423</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582391309423</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="955" y="125" width="510" height="925" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1582439784217">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="955" y="125" width="510" height="925" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582439784217" />
+    <state x="953" y="329" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582392593285">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="953" y="329" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582392593285" />
+    <state x="738" y="297" width="735" height="520" key="FileChooserDialogImpl" timestamp="1582429420850">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="738" y="297" width="735" height="520" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1582429420850" />
+    <state width="1807" height="275" key="GridCell.Tab.0.bottom" timestamp="1582468736008">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="275" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582468736008" />
+    <state width="1807" height="275" key="GridCell.Tab.0.center" timestamp="1582468736006">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="275" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582468736006" />
+    <state width="1807" height="275" key="GridCell.Tab.0.left" timestamp="1582468736005">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="275" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582468736005" />
+    <state width="1807" height="275" key="GridCell.Tab.0.right" timestamp="1582468736007">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="275" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582468736007" />
+    <state x="829" y="202" width="1022" height="737" key="SettingsEditor" timestamp="1582440187155">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="829" y="202" width="1022" height="737" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1582440187155" />
+    <state x="876" y="407" key="com.intellij.ide.util.TipDialog" timestamp="1582428894019">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="876" y="407" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582428894019" />
+    <state x="1012" y="466" width="646" height="231" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1582429973047">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="1012" y="466" width="646" height="231" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/67.27.1853.1053@67.27.1853.1053" timestamp="1582429973047" />
+    <state x="689" y="182" width="598" height="750" key="refactoring.ChangeSignatureDialog" timestamp="1582467314797">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="689" y="182" width="598" height="750" key="refactoring.ChangeSignatureDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582467314797" />
+  </component>
+</project>
