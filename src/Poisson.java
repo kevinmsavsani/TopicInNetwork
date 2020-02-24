@@ -10,7 +10,7 @@ public class Poisson {
     }
 
     public int next() {
-        double L = Math.exp(-Constant.lembda);
+        double L = Math.exp(-1/Constant.lembda);
         double p = 1.0;
         int k = 0;
 

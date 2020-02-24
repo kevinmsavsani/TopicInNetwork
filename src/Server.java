@@ -27,6 +27,11 @@ public class Server extends Thread {
                 else if(this.queueNum == 3 && Constant.queue3.size()>0){
                     break;
                 }
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
             Date date = new Date();
@@ -45,6 +50,11 @@ public class Server extends Thread {
             while (currentTime + waitTime > time){
                 Date checkDate = new Date();
                 time = (checkDate.getTime()/1000);
+                try {
+                    sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
             if(this.queueNum == 1){

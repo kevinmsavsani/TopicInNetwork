@@ -13,9 +13,9 @@ public class Constant {
     public static double rho;
 
 
-    public static BlockingQueue queue1 = new ArrayBlockingQueue(1000);
-    public static BlockingQueue queue2 = new ArrayBlockingQueue(1000);
-    public static BlockingQueue queue3 = new ArrayBlockingQueue(1000);
+    public static BlockingQueue queue1 = new ArrayBlockingQueue(100000);
+    public static BlockingQueue queue2 = new ArrayBlockingQueue(100000);
+    public static BlockingQueue queue3 = new ArrayBlockingQueue(100000);
 
     public static int queueNumber = 1;
 
