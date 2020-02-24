@@ -10,6 +10,8 @@ public class Constant {
     public static int totalTime;
     public static double lembda;
     public static double mu;
+    public static double rho;
+
 
     public static BlockingQueue queue1 = new ArrayBlockingQueue(1000);
     public static BlockingQueue queue2 = new ArrayBlockingQueue(1000);

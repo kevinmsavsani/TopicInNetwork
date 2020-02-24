@@ -13,8 +13,7 @@ public class InputGenerator extends Thread {
 
     @Override
     public void run() {
-        Date startDate = new Date();
-        Constant.startTime = startDate.getTime()/1000;
+
         long timeDiff = 0;
         while(true)
         {
@@ -27,6 +26,7 @@ public class InputGenerator extends Thread {
                 timeDiff++;
             }
             if (currentTime - Constant.startTime > Constant.totalTime){
+                System.out.println(" stopped Passenger Input");
                 stop();
                 break;
             }

@@ -35,11 +35,13 @@ public class Server extends Thread {
             int waitTime = poissonServiceTime.next();
 
             if (currentTime+waitTime - Constant.startTime > Constant.totalTime){
+
+                System.out.println(" stopped " + getName());
                 stop();
                 break;
             }
 
-            long time = (date.getTime()/1000);
+            long time = currentTime;
             while (currentTime + waitTime > time){
                 Date checkDate = new Date();
                 time = (checkDate.getTime()/1000);
@@ -47,24 +49,24 @@ public class Server extends Thread {
 
             if(this.queueNum == 1){
                 SynchronizedCounter.incrementNoOfPassenger();
-                long passengerTime = (long) Constant.queue1.remove();
-                SynchronizedCounter.incrementTotalResponseTime(currentTime+waitTime-passengerTime);
-                SynchronizedCounter.incrementTotalWaitingTime(currentTime-passengerTime);
+                long passengerStartTime = (long) Constant.queue1.remove();
+                SynchronizedCounter.incrementTotalResponseTime(currentTime+waitTime-passengerStartTime);
+                SynchronizedCounter.incrementTotalWaitingTime(currentTime-passengerStartTime);
                 SynchronizedCounter.incrementPassengerWaitingInQueue(Constant.queue1.size());
 
             }
             else if(this.queueNum == 2){
                 SynchronizedCounter.incrementNoOfPassenger();
-                long passengerTime = (long) Constant.queue2.remove();
-                SynchronizedCounter.incrementTotalResponseTime(currentTime+waitTime-passengerTime);
-                SynchronizedCounter.incrementTotalWaitingTime(currentTime-passengerTime);
+                long passengerStartTime = (long) Constant.queue2.remove();
+                SynchronizedCounter.incrementTotalResponseTime(currentTime+waitTime-passengerStartTime);
+                SynchronizedCounter.incrementTotalWaitingTime(currentTime-passengerStartTime);
                 SynchronizedCounter.incrementPassengerWaitingInQueue(Constant.queue2.size());
             }
             else if(this.queueNum == 3){
                 SynchronizedCounter.incrementNoOfPassenger();
-                long passengerTime = (long) Constant.queue3.remove();
-                SynchronizedCounter.incrementTotalResponseTime(currentTime+waitTime-passengerTime);
-                SynchronizedCounter.incrementTotalWaitingTime(currentTime-passengerTime);
+                long passengerStartTime = (long) Constant.queue3.remove();
+                SynchronizedCounter.incrementTotalResponseTime(currentTime+waitTime-passengerStartTime);
+                SynchronizedCounter.incrementTotalWaitingTime(currentTime-passengerStartTime);
                 SynchronizedCounter.incrementPassengerWaitingInQueue(Constant.queue3.size());
             }
         }
