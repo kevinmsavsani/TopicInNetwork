@@ -1,8 +1,10 @@
+package CaseB;
+
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public class Constant {
-    public static String fileName = "src/input.txt";
+    public static String fileName = "src/CaseB/input.txt";
 
     public static long startTime;
 
@@ -13,10 +15,6 @@ public class Constant {
     public static double rho;
 
 
-    public static BlockingQueue queue1 = new ArrayBlockingQueue(100000);
-    public static BlockingQueue queue2 = new ArrayBlockingQueue(100000);
-    public static BlockingQueue queue3 = new ArrayBlockingQueue(100000);
-
-    public static int queueNumber = 1;
+    public static BlockingQueue queue1 = new ArrayBlockingQueue(10000000);
 
 }

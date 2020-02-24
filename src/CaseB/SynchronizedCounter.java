@@ -1,3 +1,5 @@
+package CaseB;
+
 import java.util.concurrent.atomic.AtomicLong;
 
 public class SynchronizedCounter {
@@ -27,12 +29,12 @@ public class SynchronizedCounter {
                 newValue = Math.min(getServer1TimeCounterValue(),getInputTimeCounterValue());
             }
             long newValue1 = newValue;
-            if (Constant.queue2.size() > 0){
+            if (Constant.queue1.size() > 0){
                 newValue1 = Math.min(getServer2TimeCounterValue(),newValue);
             }
 
             long newValue2 = newValue1;
-            if (Constant.queue3.size() > 0){
+            if (Constant.queue1.size() > 0){
                 newValue2 = Math.min(getServer3TimeCounterValue(),newValue1);
             }
 

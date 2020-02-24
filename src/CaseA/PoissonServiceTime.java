@@ -1,3 +1,5 @@
+package CaseA;
+
 import java.util.Random;
 
 public class PoissonServiceTime {
@@ -5,7 +7,7 @@ public class PoissonServiceTime {
     private Random rand = new Random();;
 
     public int next() {
-        double L = Math.exp(-1/Constant.mu);
+        double L = Math.exp(-1/ Constant.mu);
         double p = 1.0;
         int k = 0;
 

@@ -1,3 +1,5 @@
+package CaseB;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -36,25 +38,26 @@ public class CoronavirusInspection {
             }
         }
 
-        Constant.rho = Constant.lembda/(3*Constant.mu);
+        Constant.rho = Constant.lembda/(3* Constant.mu);
+
         System.out.println("Theoritical \n ");
         System.out.println("Traffic Intensity (rho)  : "+ Constant.rho );
-        System.out.println("Average number of passengers getting inspected (mean no. of jobs in system) : "+ Constant.rho/(1-Constant.rho));
-        System.out.println("Average response time for passengers in getting inspected (mean response time)   : "+ 1/(Constant.mu - (Constant.lembda/3)));
+        System.out.println("Average number of passengers getting inspected (mean no. of jobs in system) : "+ Constant.rho/(1- Constant.rho));
+        System.out.println("Average response time for passengers in getting inspected (mean response time)   : "+ (1/(Constant.mu - (Constant.lembda/3))));
         System.out.println("Average time for which a passenger has to wait until getting in" +
-                "spected (mean waiting time)  : "+ Constant.rho/(Constant.mu*(1-Constant.rho)));
-        System.out.println("Average number of passengers waiting in queue before each officer  : "+ (Constant.rho*Constant.rho)/(1-Constant.rho));
+                "spected (mean waiting time)  : "+ (Constant.rho/(Constant.mu*(1- Constant.rho))));
+        System.out.println("Average number of passengers waiting in queue before each officer  : "+ (Constant.rho* Constant.rho)/(1- Constant.rho));
 
         System.out.println(" \n ");
         System.out.println(" \n ");
-        System.out.println("Total time  : "+Constant.totalTime);
-        System.out.println("Total Passengers arrived  : "+ (SynchronizedCounter.getNoOfPassenger() + Constant.queue1.size() +Constant.queue2.size() + Constant.queue3.size()));
+        System.out.println("Total time  : "+ Constant.totalTime);
+        System.out.println("Total Passengers arrived  : "+ (SynchronizedCounter.getNoOfPassenger() + Constant.queue1.size()));
         System.out.println("Total Passengers inspected  : "+ SynchronizedCounter.getNoOfPassenger());
-        System.out.println("Average number of passengers getting inspected  : "+ (double) SynchronizedCounter.getNoOfPassenger()/Constant.totalTime);
-        System.out.println("Average response time for passengers in getting inspected   : "+ (double) SynchronizedCounter.getTotalResponseTime()/SynchronizedCounter.getNoOfPassenger());
+        System.out.println("Average number of passengers getting inspected  : "+ (double) SynchronizedCounter.getNoOfPassenger()/ Constant.totalTime);
+        System.out.println("Average response time for passengers in getting inspected   : "+ (double) SynchronizedCounter.getTotalResponseTime()/ SynchronizedCounter.getNoOfPassenger());
         System.out.println("Average time for which a passenger has to wait until getting in" +
-                "spected  : "+ (double) SynchronizedCounter.getTotalWaitingTime()/SynchronizedCounter.getNoOfPassenger());
-        System.out.println("Average number of passengers waiting in queue before each officer  : "+ (double) SynchronizedCounter.getPassengerWaitingInQueue()/SynchronizedCounter.getNoOfPassenger());
+                "spected  : "+ (double) SynchronizedCounter.getTotalWaitingTime()/ SynchronizedCounter.getNoOfPassenger());
+        System.out.println("Average number of passengers waiting in queue before each officer  : "+ (double) SynchronizedCounter.getPassengerWaitingInQueue()/ SynchronizedCounter.getNoOfPassenger());
     }
 
     private CoronavirusInspection() {

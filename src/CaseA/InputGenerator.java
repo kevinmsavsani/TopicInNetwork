@@ -1,3 +1,4 @@
+package CaseA;
 
 public class InputGenerator extends Thread {
 
