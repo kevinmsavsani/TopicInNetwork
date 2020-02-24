@@ -38,14 +38,14 @@ public class CoronavirusInspection {
             }
         }
 
-        Constant.rho = Constant.lembda/(3* Constant.mu);
+        Constant.rho = (3*Constant.lembda)/(Constant.mu);
 
         System.out.println("Theoritical \n ");
         System.out.println("Traffic Intensity (rho)  : "+ Constant.rho );
         System.out.println("Average number of passengers getting inspected (mean no. of jobs in system) : "+ Constant.rho/(1- Constant.rho));
-        System.out.println("Average response time for passengers in getting inspected (mean response time)   : "+ (1/(Constant.mu - (Constant.lembda/3))));
+        System.out.println("Average response time for passengers in getting inspected (mean response time)   : "+ (1/((Constant.mu/3) - (Constant.lembda))));
         System.out.println("Average time for which a passenger has to wait until getting in" +
-                "spected (mean waiting time)  : "+ (Constant.rho/(Constant.mu*(1- Constant.rho))));
+                "spected (mean waiting time)  : "+ (3*Constant.rho/(Constant.mu*(1- Constant.rho))));
         System.out.println("Average number of passengers waiting in queue before each officer  : "+ (Constant.rho* Constant.rho)/(1- Constant.rho));
 
         System.out.println(" \n ");
