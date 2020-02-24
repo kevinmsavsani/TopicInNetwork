@@ -1,6 +1,4 @@
 
-import java.util.Date;
-
 public class InputGenerator extends Thread {
 
 
@@ -8,27 +6,22 @@ public class InputGenerator extends Thread {
     public void run() {
 
         Poisson poisson = new Poisson();
-        long prevTime = Constant.startTime;
         long nextPassengerTime = 0;
         while(true)
         {
-            Date date = new Date();
-            long currentTime = (date.getTime()/1000);
-            if(currentTime-prevTime >= nextPassengerTime) {
+            if(SynchronizedCounter.getInputTimeCounterValue() <= SynchronizedCounter.getTimeCounterValue()) {
                 nextPassengerTime = poisson.next();
-                addPassengerToQueue(currentTime);
-                prevTime = currentTime;
+                addPassengerToQueue(SynchronizedCounter.getInputTimeCounterValue());
+                SynchronizedCounter.incrementInputTimeCounter(nextPassengerTime);
+                SynchronizedCounter.updateTimeCounter();
             }
-            if (currentTime - Constant.startTime > Constant.totalTime){
-                System.out.println(" stopped Passenger Input");
+            if (SynchronizedCounter.getTimeCounterValue()  >= Constant.totalTime){
+                //System.out.println(" stopped Passenger Input");
                 stop();
                 break;
             }
-            try {
-                sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            SynchronizedCounter.updateTimeCounter();
+
         }
     }
 

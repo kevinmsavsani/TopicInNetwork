@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c15d5d6-5160-4798-aba5-a6fbbccb42a7" name="Default Changelist" comment="" />
+    <list default="true" id="3c15d5d6-5160-4798-aba5-a6fbbccb42a7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/Constant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/CoronavirusInspection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/CoronavirusInspection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/InputGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/InputGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/Poisson.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/Poisson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/Server.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/InputGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SynchronizedCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SynchronizedCounter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/input.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,7 +23,16 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="kevinmsavsani &lt;kevinmsavsani@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1YAhSum9dYeIDtpLGfFxmUPenim" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -22,6 +44,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
@@ -85,7 +108,27 @@
       <option name="presentableId" value="Default" />
       <updated>1582391309423</updated>
     </task>
+    <task id="LOCAL-00001" summary="added theoretical results">
+      <created>1582515310075</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1582515310075</updated>
+    </task>
+    <task id="LOCAL-00002" summary="changed arrival per wait time">
+      <created>1582516507033</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582516507033</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added theoretical results" />
+    <MESSAGE value="changed arrival per wait time" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed arrival per wait time" />
   </component>
   <component name="WindowStateProjectService">
     <state x="955" y="125" width="510" height="925" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1582439784217">
@@ -96,34 +139,42 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="953" y="329" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582392593285" />
+    <state x="533" y="96" width="911" height="922" key="CommitChangelistDialog2" timestamp="1582516506854">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="533" y="96" width="911" height="922" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1582516506854" />
     <state x="738" y="297" width="735" height="520" key="FileChooserDialogImpl" timestamp="1582429420850">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="738" y="297" width="735" height="520" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1582429420850" />
-    <state width="1807" height="275" key="GridCell.Tab.0.bottom" timestamp="1582468736008">
+    <state width="1807" height="275" key="GridCell.Tab.0.bottom" timestamp="1582543549617">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="275" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582468736008" />
-    <state width="1807" height="275" key="GridCell.Tab.0.center" timestamp="1582468736006">
+    <state width="1807" height="275" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582543549617" />
+    <state width="1807" height="275" key="GridCell.Tab.0.center" timestamp="1582543549617">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="275" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582468736006" />
-    <state width="1807" height="275" key="GridCell.Tab.0.left" timestamp="1582468736005">
+    <state width="1807" height="275" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582543549617" />
+    <state width="1807" height="275" key="GridCell.Tab.0.left" timestamp="1582543549616">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="275" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582468736005" />
-    <state width="1807" height="275" key="GridCell.Tab.0.right" timestamp="1582468736007">
+    <state width="1807" height="275" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582543549616" />
+    <state width="1807" height="275" key="GridCell.Tab.0.right" timestamp="1582543549617">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="275" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582468736007" />
+    <state width="1807" height="275" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582543549617" />
     <state x="829" y="202" width="1022" height="737" key="SettingsEditor" timestamp="1582440187155">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="829" y="202" width="1022" height="737" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1582440187155" />
-    <state x="876" y="407" key="com.intellij.ide.util.TipDialog" timestamp="1582428894019">
+    <state x="588" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1582516510345">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="876" y="407" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582428894019" />
+    <state x="588" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1582516510345" />
+    <state x="876" y="407" key="com.intellij.ide.util.TipDialog" timestamp="1582514840289">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="876" y="407" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582514840289" />
     <state x="1012" y="466" width="646" height="231" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1582429973047">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
