@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class CoronavirusInspection {
 
-    private List<Server> servers; // List of Setup Threads
+    private List<Server> servers; // List of Server Threads
 
     private void startService() {
 

@@ -35,7 +35,6 @@ public class Server extends Thread {
 
                 if (SynchronizedCounter.getTimeCounterValue() >= Constant.totalTime) {
 
-                    //System.out.println(" stopped " + getName());
                     stop();
                     break;
                 }
@@ -45,11 +44,8 @@ public class Server extends Thread {
             long currentTime = SynchronizedCounter.getTimeCounterValue();
             int waitTime = poissonServiceTime.next();
 
-            //System.out.println(currentTime+"    "+waitTime +"  "+this.queueNum);
 
             if (SynchronizedCounter.getTimeCounterValue() >= Constant.totalTime) {
-
-                //System.out.println(" stopped " + getName());
                 stop();
                 break;
             }
@@ -89,8 +85,6 @@ public class Server extends Thread {
                 }
 
                 if (SynchronizedCounter.getTimeCounterValue() >= Constant.totalTime) {
-
-                    //System.out.println(" stopped " + getName());
                     stop();
                     break;
                 }

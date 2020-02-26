@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class CoronavirusInspection {
 
-    private List<Server> servers; // List of Setup Threads
+    private List<Server> servers; // List of Server Threads
 
     private void startService() {
         Date startDate = new Date();
@@ -38,25 +38,6 @@ public class CoronavirusInspection {
             }
         }
 
-//        Constant.rho = (Constant.lembda)/(Constant.m*Constant.mu);
-//
-//        double x=0;
-//        for (long i =0; i<Constant.m;i++){
-//            long j,fact=1;
-//            for(j=1;j<=i;j++){
-//                fact=fact*j;
-//            }
-//            x =  x+ (pow(Constant.m*Constant.rho,i)/fact);
-//        }
-//        long j,fact=1;
-//        for(j=1;j<=Constant.m;j++){
-//            fact=fact*j;
-//        }
-//        double y =  (pow(Constant.m*Constant.rho,Constant.m)/(fact*(1-Constant.rho)));
-//        x= x+y;
-//        Constant.po = 1/x;
-//        Constant.g = y* Constant.po;
-
         double rho = Constant.lembda / (3 * Constant.mu);
         double prob_0 = 1 / (1 + (3*rho) + (3*rho)*(3*rho) / 2 + Math.pow(3*rho, 3)/(6 * (1-rho)));
         double G = Math.pow(3*rho, 3) * prob_0 / (6 * (1 - rho));
@@ -66,14 +47,6 @@ public class CoronavirusInspection {
         double avg_response_time = avg_waiting_time + 1 / Constant.mu;
         double avg_passenger_system = avg_response_time * (Constant.lembda );
         double avg_passenger_getting_inspected = avg_passenger_system - avg_waiting_passengers;
-
-//        System.out.println("Theoritical \n ");
-//        System.out.println("Traffic Intensity (rho)  : "+ Constant.rho );
-//        System.out.println("Average number of passengers getting inspected (mean no. of jobs in system) : "+ (((Constant.rho* Constant.g)/(1- Constant.rho))+ (Constant.lembda/Constant.mu)));
-//        System.out.println("Average response time for passengers in getting inspected (mean response time)   : "+ ((1/(Constant.mu)) + ((Constant.rho*Constant.g)/(Constant.lembda*(1- Constant.rho)))));
-//        System.out.println("Average time for which a passenger has to wait until getting in" +
-//                "spected (mean waiting time)  : "+ ((Constant.rho*Constant.g)/(Constant.lembda*(1- Constant.rho))));
-//        System.out.println("Average number of passengers waiting in queue before each officer  : "+ (Constant.rho* Constant.g)/(1- Constant.rho));
 
         System.out.println("Theoritical \n ");
         System.out.println("Traffic Intensity (rho)  : "+ rho );

@@ -4,7 +4,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 public class Constant {
-    public static String fileName = "src/CaseA/input.txt";
+    public static String fileName = "src/CaseC/input.txt";
 
     public static long startTime;
 

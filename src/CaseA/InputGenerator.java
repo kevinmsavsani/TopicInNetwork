@@ -18,13 +18,11 @@ public class InputGenerator extends Thread {
         {
             if(SynchronizedCounter.getInputTimeCounterValue() <= SynchronizedCounter.getTimeCounterValue()) {
                 nextPassengerTime = poisson.next();
-                //System.out.println(SynchronizedCounter.getTimeCounterValue() +"    "+nextPassengerTime+"   I");
                 addPassengerToQueue(SynchronizedCounter.getInputTimeCounterValue());
                 SynchronizedCounter.incrementInputTimeCounter(nextPassengerTime);
                 SynchronizedCounter.updateTimeCounter();
             }
             if (SynchronizedCounter.getTimeCounterValue()  >= Constant.totalTime){
-                //System.out.println(" stopped Passenger Input");
                 stop();
                 break;
             }

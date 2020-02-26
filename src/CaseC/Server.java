@@ -17,25 +17,24 @@ public class Server extends Thread {
             while (true) {
                 if (this.queueNum == 1 && Constant.queue1.size() > 0) {
                     break;
-                } else if(this.queueNum == 1 ){
+                } else if(this.queueNum == 1 &&  SynchronizedCounter.getInputTimeCounterValue() > SynchronizedCounter.getServer1TimeCounterValue()){
                     SynchronizedCounter.incrementServer1TimeCounter(SynchronizedCounter.getInputTimeCounterValue()-SynchronizedCounter.getServer1TimeCounterValue());
                 }
 
                 if (this.queueNum == 2 && Constant.queue2.size() > 0) {
                     break;
-                }  else  if(this.queueNum == 2 ) {
+                }  else  if(this.queueNum == 2 &&  SynchronizedCounter.getInputTimeCounterValue() > SynchronizedCounter.getServer2TimeCounterValue()) {
                     SynchronizedCounter.incrementServer2TimeCounter(SynchronizedCounter.getInputTimeCounterValue()-SynchronizedCounter.getServer2TimeCounterValue());
                 }
 
                 if (this.queueNum == 3 && Constant.queue3.size() > 0) {
                     break;
-                } else  if(this.queueNum == 3 ){
+                } else  if(this.queueNum == 3 &&  SynchronizedCounter.getInputTimeCounterValue() > SynchronizedCounter.getServer3TimeCounterValue()){
                     SynchronizedCounter.incrementServer3TimeCounter(SynchronizedCounter.getInputTimeCounterValue()-SynchronizedCounter.getServer3TimeCounterValue());
                 }
 
                 if (SynchronizedCounter.getTimeCounterValue() >= Constant.totalTime) {
 
-                    //System.out.println(" stopped " + getName());
                     stop();
                     break;
                 }
@@ -45,11 +44,8 @@ public class Server extends Thread {
             long currentTime = SynchronizedCounter.getTimeCounterValue();
             int waitTime = poissonServiceTime.next();
 
-            //System.out.println(currentTime+"    "+waitTime +"  "+this.queueNum);
 
             if (SynchronizedCounter.getTimeCounterValue() >= Constant.totalTime) {
-
-                //System.out.println(" stopped " + getName());
                 stop();
                 break;
             }
@@ -89,8 +85,6 @@ public class Server extends Thread {
                 }
 
                 if (SynchronizedCounter.getTimeCounterValue() >= Constant.totalTime) {
-
-                    //System.out.println(" stopped " + getName());
                     stop();
                     break;
                 }

@@ -17,7 +17,6 @@ public class InputGenerator extends Thread {
                 SynchronizedCounter.updateTimeCounter();
             }
             if (SynchronizedCounter.getInputTimeCounterValue()  >= Constant.totalTime){
-                //System.out.println(" stopped Passenger Input");
                 stop();
                 break;
             }
