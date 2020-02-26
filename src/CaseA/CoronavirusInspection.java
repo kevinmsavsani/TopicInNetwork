@@ -3,7 +3,6 @@ package CaseA;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,8 +11,6 @@ public class CoronavirusInspection {
     private List<Server> servers; // List of Setup Threads
 
     private void startService() {
-        Date startDate = new Date();
-        Constant.startTime = startDate.getTime()/1000;
 
         InputGenerator inputGenerator = new InputGenerator();
         inputGenerator.start();
@@ -63,8 +60,7 @@ public class CoronavirusInspection {
     private CoronavirusInspection() {
         servers = new ArrayList<>();
         for (int i = 0; i < Constant.specialOfficersCount; i++) {
-            PoissonServiceTime poissonServiceTime = new PoissonServiceTime();
-            Server server = new Server(this, i+1,poissonServiceTime);
+            Server server = new Server(this, i+1);
             servers.add(server);
         }
     }
@@ -76,7 +72,6 @@ public class CoronavirusInspection {
         Constant.totalTime = scanner.nextInt();
         Constant.lembda = scanner.nextDouble();
         Constant.mu = scanner.nextDouble();
-
         CoronavirusInspection coronavirusInspection = new CoronavirusInspection();
 
         coronavirusInspection.startService();

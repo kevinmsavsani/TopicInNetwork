@@ -1,4 +1,4 @@
-package CaseA;
+package CaseC;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -15,8 +15,10 @@ public class Constant {
     public static double rho;
 
 
-    public static BlockingQueue queue1 = new ArrayBlockingQueue(10000000);
-    public static BlockingQueue queue2 = new ArrayBlockingQueue(10000000);
-    public static BlockingQueue queue3 = new ArrayBlockingQueue(10000000);
+    public static BlockingQueue queue1 = new ArrayBlockingQueue(10);
+    public static BlockingQueue queue2 = new ArrayBlockingQueue(10);
+    public static BlockingQueue queue3 = new ArrayBlockingQueue(10);
+
+    public static int queueNumber = 1;
 
 }

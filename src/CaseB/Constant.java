@@ -13,6 +13,10 @@ public class Constant {
     public static double lembda;
     public static double mu;
     public static double rho;
+    public static double po;
+    public static double g;
+    public static double m=3;
+
 
 
     public static BlockingQueue queue1 = new ArrayBlockingQueue(10000000);
