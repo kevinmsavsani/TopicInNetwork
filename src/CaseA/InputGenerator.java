@@ -7,17 +7,28 @@ public class InputGenerator extends Thread {
 
     @Override
     public void run() {
-
+        try {
+            sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Poisson poisson = new Poisson();
         long nextPassengerTime = 0;
-
-        if(SynchronizedCounter.getInputTimeCounterValue() == SynchronizedCounter.getTimeCounterValue()) {
-            nextPassengerTime = poisson.next();
-            //System.out.println(SynchronizedCounter.getTimeCounterValue() +"    "+nextPassengerTime+"   I");
-            addPassengerToQueue(SynchronizedCounter.getInputTimeCounterValue());
-            SynchronizedCounter.incrementInputTimeCounter(nextPassengerTime);
+        while(true)
+        {
+            if(SynchronizedCounter.getInputTimeCounterValue() <= SynchronizedCounter.getTimeCounterValue()) {
+                nextPassengerTime = poisson.next();
+                //System.out.println(SynchronizedCounter.getTimeCounterValue() +"    "+nextPassengerTime+"   I");
+                addPassengerToQueue(SynchronizedCounter.getInputTimeCounterValue());
+                SynchronizedCounter.incrementInputTimeCounter(nextPassengerTime);
+                SynchronizedCounter.updateTimeCounter();
+            }
+            if (SynchronizedCounter.getTimeCounterValue()  >= Constant.totalTime){
+                //System.out.println(" stopped Passenger Input");
+                stop();
+                break;
+            }
         }
-
     }
 
     private void addPassengerToQueue(long time) {

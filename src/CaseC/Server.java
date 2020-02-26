@@ -2,37 +2,35 @@ package CaseC;
 
 public class Server extends Thread {
     private CoronavirusInspection coronavirusInspection;
-    private PoissonServiceTime poissonServiceTime;
     private int queueNum;
 
-    Server(CoronavirusInspection coronavirusInspection, int name, PoissonServiceTime poissonServiceTime){
+    Server(CoronavirusInspection coronavirusInspection, int name){
         setName(String.valueOf(name));
         this.queueNum = name;
         this.coronavirusInspection = coronavirusInspection;
-        this.poissonServiceTime = poissonServiceTime;
     }
 
     @Override
     public void run(){
-
+        PoissonServiceTime poissonServiceTime = new PoissonServiceTime();
         while(true) {
             while (true) {
                 if (this.queueNum == 1 && Constant.queue1.size() > 0) {
                     break;
-                } else {
-                    SynchronizedCounter.incrementServer1TimeCounter(SynchronizedCounter.getTimeCounterValue());
+                } else if(this.queueNum == 1 ){
+                    SynchronizedCounter.incrementServer1TimeCounter(SynchronizedCounter.getInputTimeCounterValue()-SynchronizedCounter.getServer1TimeCounterValue());
                 }
 
                 if (this.queueNum == 2 && Constant.queue2.size() > 0) {
                     break;
-                }  else {
-                    SynchronizedCounter.incrementServer2TimeCounter(SynchronizedCounter.getTimeCounterValue());
+                }  else  if(this.queueNum == 2 ) {
+                    SynchronizedCounter.incrementServer2TimeCounter(SynchronizedCounter.getInputTimeCounterValue()-SynchronizedCounter.getServer2TimeCounterValue());
                 }
 
                 if (this.queueNum == 3 && Constant.queue3.size() > 0) {
                     break;
-                } else {
-                    SynchronizedCounter.incrementServer3TimeCounter(SynchronizedCounter.getTimeCounterValue());
+                } else  if(this.queueNum == 3 ){
+                    SynchronizedCounter.incrementServer3TimeCounter(SynchronizedCounter.getInputTimeCounterValue()-SynchronizedCounter.getServer3TimeCounterValue());
                 }
 
                 if (SynchronizedCounter.getTimeCounterValue() >= Constant.totalTime) {
@@ -41,10 +39,13 @@ public class Server extends Thread {
                     stop();
                     break;
                 }
+                SynchronizedCounter.updateTimeCounter();
             }
 
             long currentTime = SynchronizedCounter.getTimeCounterValue();
             int waitTime = poissonServiceTime.next();
+
+            //System.out.println(currentTime+"    "+waitTime +"  "+this.queueNum);
 
             if (SynchronizedCounter.getTimeCounterValue() >= Constant.totalTime) {
 
@@ -86,7 +87,6 @@ public class Server extends Thread {
                     SynchronizedCounter.incrementPassengerWaitingInQueue(Constant.queue3.size());
                     break;
                 }
-                SynchronizedCounter.updateTimeCounter();
 
                 if (SynchronizedCounter.getTimeCounterValue() >= Constant.totalTime) {
 

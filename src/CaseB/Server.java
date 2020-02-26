@@ -22,22 +22,22 @@ public class Server extends Thread {
                     if (this.queueNum == 1 && Constant.queue1.size() > 0) {
                         passengerStartTime = (long) Constant.queue1.remove();
                         break;
-                    } else {
-                        SynchronizedCounter.incrementServer1TimeCounter(SynchronizedCounter.getTimeCounterValue());
+                    } else if (this.queueNum ==1){
+                        SynchronizedCounter.incrementServer1TimeCounter(SynchronizedCounter.getInputTimeCounterValue()- SynchronizedCounter.getServer1TimeCounterValue());
                     }
 
                     if (this.queueNum == 2 && Constant.queue1.size() > 0) {
                         passengerStartTime = (long) Constant.queue1.remove();
                         break;
-                    } else {
-                        SynchronizedCounter.incrementServer2TimeCounter(SynchronizedCounter.getTimeCounterValue());
+                    } else if (this.queueNum ==2) {
+                        SynchronizedCounter.incrementServer2TimeCounter(SynchronizedCounter.getInputTimeCounterValue()- SynchronizedCounter.getServer2TimeCounterValue());
                     }
 
                     if (this.queueNum == 3 && Constant.queue1.size() > 0) {
                         passengerStartTime = (long) Constant.queue1.remove();
                         break;
-                    } else {
-                        SynchronizedCounter.incrementServer3TimeCounter(SynchronizedCounter.getTimeCounterValue());
+                    } else  if (this.queueNum ==3) {
+                        SynchronizedCounter.incrementServer3TimeCounter(SynchronizedCounter.getInputTimeCounterValue()- SynchronizedCounter.getServer3TimeCounterValue());
                     }
                 }
                 if (SynchronizedCounter.getTimeCounterValue() >= Constant.totalTime) {
@@ -46,12 +46,13 @@ public class Server extends Thread {
                     stop();
                     break;
                 }
+                SynchronizedCounter.updateTimeCounter();
             }
 
-            long currentTime = SynchronizedCounter.getTimeCounterValue();
+            long currentTime = SynchronizedCounter.getInputTimeCounterValue();
             int waitTime = poissonServiceTime.next();
 
-            if (SynchronizedCounter.getTimeCounterValue() >= Constant.totalTime) {
+            if (currentTime >= Constant.totalTime) {
 
                 //System.out.println(" stopped " + getName());
                 stop();
