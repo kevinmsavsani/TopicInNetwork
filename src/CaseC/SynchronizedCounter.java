@@ -15,6 +15,7 @@ public class SynchronizedCounter {
     private static final AtomicLong server2TimeCounter = new AtomicLong(0);
     private static final AtomicLong server3TimeCounter = new AtomicLong(0);
     private static final AtomicLong inputTimeCounter = new AtomicLong(0);
+    private static final AtomicLong totalInspectionTime = new AtomicLong(0);
 
 
     public static long getTimeCounterValue() {
@@ -132,6 +133,19 @@ public class SynchronizedCounter {
         }
     }
 
+    public static long getTotalInspectionTime() {
+        return totalInspectionTime.get();
+    }
+
+    public static void incrementTotalInspectionTime(long passengerTime) {
+        while(true) {
+            long existingValue = getTotalInspectionTime();
+            long newValue = existingValue + passengerTime;
+            if(totalInspectionTime.compareAndSet(existingValue, newValue)) {
+                return;
+            }
+        }
+    }
 
     public static long getTotalWaitingTime() {
         return totalWaitingTime.get();

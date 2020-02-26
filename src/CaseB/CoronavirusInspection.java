@@ -57,11 +57,11 @@ public class CoronavirusInspection {
         System.out.println("Average number of passengers waiting in queue before each officer  : "+ avg_waiting_passengers);
 
         System.out.println(" \n ");
-        System.out.println(" \n ");
+        System.out.println(" Output :\n ");
         System.out.println("Total time  : "+ Constant.totalTime);
         System.out.println("Total Passengers arrived  : "+ (SynchronizedCounter.getNoOfPassenger() + Constant.queue1.size()));
         System.out.println("Total Passengers inspected  : "+ SynchronizedCounter.getNoOfPassenger());
-        System.out.println("Average number of passengers getting inspected  : "+ (double) SynchronizedCounter.getNoOfPassenger()/ Constant.totalTime);
+        System.out.println("Average number of passengers getting inspected  : "+ (double) SynchronizedCounter.getTotalInspectionTime()/ Constant.totalTime);
         System.out.println("Average response time for passengers in getting inspected   : "+ (double) SynchronizedCounter.getTotalResponseTime()/ SynchronizedCounter.getNoOfPassenger());
         System.out.println("Average time for which a passenger has to wait until getting in" +
                 "spected  : "+ (double) SynchronizedCounter.getTotalWaitingTime()/ SynchronizedCounter.getNoOfPassenger());
