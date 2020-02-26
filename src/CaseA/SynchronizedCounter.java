@@ -27,15 +27,23 @@ public class SynchronizedCounter {
             long newValue = getInputTimeCounterValue();
             if (Constant.queue1.size() > 0){
                 newValue = Math.min(getServer1TimeCounterValue(),getInputTimeCounterValue());
+            } else {
+                incrementServer1TimeCounter(getInputTimeCounterValue()-getServer1TimeCounterValue());
             }
             long newValue1 = newValue;
             if (Constant.queue2.size() > 0){
                 newValue1 = Math.min(getServer2TimeCounterValue(),newValue);
+            } else {
+                incrementServer2TimeCounter(getInputTimeCounterValue()-getServer2TimeCounterValue());
+
             }
 
             long newValue2 = newValue1;
             if (Constant.queue3.size() > 0){
                 newValue2 = Math.min(getServer3TimeCounterValue(),newValue1);
+            } else {
+                incrementServer3TimeCounter(getInputTimeCounterValue()-getServer3TimeCounterValue());
+
             }
 
             if(timeCounter.compareAndSet(existingValue, newValue2)) {

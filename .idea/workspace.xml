@@ -2,18 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c15d5d6-5160-4798-aba5-a6fbbccb42a7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/Constant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/CoronavirusInspection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/CoronavirusInspection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/InputGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/InputGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/Poisson.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/Poisson.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InputGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SynchronizedCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SynchronizedCounter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/Constant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/CoronavirusInspection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/InputGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/Poisson.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/PoissonServiceTime.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/Server.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/SynchronizedCounter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/input.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CaseA/CoronavirusInspection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CaseA/CoronavirusInspection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CaseA/InputGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CaseA/InputGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CaseA/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CaseA/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CaseA/SynchronizedCounter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CaseA/SynchronizedCounter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,44 +46,67 @@
     <property name="Repository.Attach.Sources" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/doc" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/doc" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/CaseA" />
     </key>
   </component>
   <component name="RunManager" selected="Application.CoronavirusInspection">
+    <configuration name="CoronavirusInspection (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CaseB.CoronavirusInspection" />
+      <module name="Assignment1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="CaseB.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CoronavirusInspection (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="CaseC.CoronavirusInspection" />
+      <module name="Assignment1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="CaseC.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CoronavirusInspection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="CoronavirusInspection" />
+      <option name="MAIN_CLASS_NAME" value="CaseA.CoronavirusInspection" />
       <module name="Assignment1" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Poisson" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Poisson" />
-      <module name="Assignment1" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PoissonProcess" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="PoissonProcess" />
+      <option name="MAIN_CLASS_NAME" value="CaseA.Poisson" />
       <module name="Assignment1" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="PoissonServiceTime" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="PoissonServiceTime" />
+      <option name="MAIN_CLASS_NAME" value="CaseA.PoissonServiceTime" />
       <module name="Assignment1" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -91,9 +115,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.CoronavirusInspection" />
+        <item itemvalue="Application.CoronavirusInspection (2)" />
+        <item itemvalue="Application.CoronavirusInspection (1)" />
         <item itemvalue="Application.PoissonServiceTime" />
         <item itemvalue="Application.Poisson" />
-        <item itemvalue="Application.PoissonProcess" />
       </list>
     </recent_temporary>
   </component>
@@ -122,13 +147,44 @@
       <option name="project" value="LOCAL" />
       <updated>1582516507033</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Changed time to logical time">
+      <created>1582543618657</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582543618657</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added Case B">
+      <created>1582568322231</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582568322231</updated>
+    </task>
+    <task id="LOCAL-00005" summary="few changes">
+      <created>1582572331281</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1582572331281</updated>
+    </task>
+    <task id="LOCAL-00006" summary="few changes">
+      <created>1582701930580</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1582701930580</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added theoretical results" />
     <MESSAGE value="changed arrival per wait time" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed arrival per wait time" />
+    <MESSAGE value="Changed time to logical time" />
+    <MESSAGE value="Added Case B" />
+    <MESSAGE value="few changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="few changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="955" y="125" width="510" height="925" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1582439784217">
@@ -139,46 +195,66 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="953" y="329" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582392593285" />
-    <state x="533" y="96" width="911" height="922" key="CommitChangelistDialog2" timestamp="1582516506854">
+    <state x="533" y="96" width="911" height="922" key="CommitChangelistDialog2" timestamp="1582701930399">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="533" y="96" width="911" height="922" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1582516506854" />
+    <state x="533" y="96" width="911" height="922" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1582701930399" />
     <state x="738" y="297" width="735" height="520" key="FileChooserDialogImpl" timestamp="1582429420850">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="738" y="297" width="735" height="520" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1582429420850" />
-    <state width="1807" height="275" key="GridCell.Tab.0.bottom" timestamp="1582543549617">
+    <state width="1807" height="340" key="GridCell.Tab.0.bottom" timestamp="1582712590273">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="275" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582543549617" />
-    <state width="1807" height="275" key="GridCell.Tab.0.center" timestamp="1582543549617">
+    <state width="1807" height="340" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582712590273" />
+    <state width="1807" height="340" key="GridCell.Tab.0.center" timestamp="1582712590271">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="275" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582543549617" />
-    <state width="1807" height="275" key="GridCell.Tab.0.left" timestamp="1582543549616">
+    <state width="1807" height="340" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582712590271" />
+    <state width="1807" height="340" key="GridCell.Tab.0.left" timestamp="1582712590269">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="275" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582543549616" />
-    <state width="1807" height="275" key="GridCell.Tab.0.right" timestamp="1582543549617">
+    <state width="1807" height="340" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582712590269" />
+    <state width="1807" height="340" key="GridCell.Tab.0.right" timestamp="1582712590272">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="275" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582543549617" />
+    <state width="1807" height="340" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582712590272" />
+    <state width="1807" height="340" key="GridCell.Tab.1.bottom" timestamp="1582712590279">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="340" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582712590279" />
+    <state width="1807" height="340" key="GridCell.Tab.1.center" timestamp="1582712590276">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="340" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582712590276" />
+    <state width="1807" height="340" key="GridCell.Tab.1.left" timestamp="1582712590275">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="340" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582712590275" />
+    <state width="1807" height="340" key="GridCell.Tab.1.right" timestamp="1582712590278">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1807" height="340" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582712590278" />
     <state x="829" y="202" width="1022" height="737" key="SettingsEditor" timestamp="1582440187155">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="829" y="202" width="1022" height="737" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1582440187155" />
-    <state x="588" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1582516510345">
+    <state x="588" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1582701934313">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="588" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1582516510345" />
-    <state x="876" y="407" key="com.intellij.ide.util.TipDialog" timestamp="1582514840289">
+    <state x="588" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1582701934313" />
+    <state x="876" y="407" key="com.intellij.ide.util.TipDialog" timestamp="1582695084246">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="876" y="407" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582514840289" />
+    <state x="876" y="407" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1582695084246" />
     <state x="1012" y="466" width="646" height="231" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1582429973047">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="1012" y="466" width="646" height="231" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/67.27.1853.1053@67.27.1853.1053" timestamp="1582429973047" />
+    <state x="302" y="154" width="1372" height="806" key="new project wizard" timestamp="1582649411572">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="302" y="154" width="1372" height="806" key="new project wizard/67.27.1853.1053@67.27.1853.1053" timestamp="1582649411572" />
     <state x="689" y="182" width="598" height="750" key="refactoring.ChangeSignatureDialog" timestamp="1582467314797">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
