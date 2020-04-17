@@ -165,7 +165,6 @@ int main(int argc, char** argv)
 	if (strcmp("iSLIP", queue)==0)
     {
 	    
-	    vector<vector<int>> outputbuffer(N);
 
 	    vector<vector<pair<int,int>>> inputbuffer( N );
 
@@ -174,8 +173,20 @@ int main(int argc, char** argv)
 	    vector<int> grantPhase(N);
 	    vector<int> acceptPhase(N);
 
+	    vector<vector<pair<int,int>>> outputbuffer( N );
+
 		for (int i = 0; i < T; ++i)
 		{
+
+			for (int j = 0; j < N; ++j)
+			{
+				if (outputbuffer[j].size() > 0)
+				{
+					cout << outputbuffer[j][0].first << "  " << i << endl;
+
+				    outputbuffer[j].clear();
+				}				 				
+			}
 		
 			//cout << "Time  " << i << endl;
 			for (int j = 0; j < N; ++j)
@@ -286,6 +297,7 @@ int main(int argc, char** argv)
 								for(int l= 0;l <inputbuffer[j].size();l++){
 									if (inputbuffer[j][l].second == k)
 									{
+										outputbuffer[k].push_back( make_pair(inputbuffer[j][l].first,j)); 
 										it = inputbuffer[j].begin() + l; 
 					    				inputbuffer[j].erase(it);
 										break;
