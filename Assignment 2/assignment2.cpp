@@ -2,6 +2,62 @@
 
 using namespace std;
 
+
+
+void calculate_mean_sd(std::vector<int> delay,vector<double> &output_avg_sd)
+{
+	double sum=0;
+	double mean;
+	double sd=0;
+	double n=delay.size();
+
+
+	for(int i=0;i<n;i++)
+	{
+		sum+=delay[i];
+	}
+
+	mean=sum/n;
+
+	cout<<"Average PD "<<mean<<endl;
+	output_avg_sd.push_back(mean);
+
+	for(int i=0;i<n;i++)
+	{
+		sd+=pow(delay[i]-mean,2);
+	}
+
+
+
+	sd=sqrt(sd/n);
+
+	cout<<"SD of PD "<<sd<<endl;
+	output_avg_sd.push_back(sd);
+
+
+}
+
+
+double link_utilization(vector<vector<double> > link_util,int T)
+{
+	int N=link_util.size();
+	double sum=0;
+	for(int i=0;i<N;i++)
+	{
+		for(int j=0;j<N;j++)
+		{
+			link_util[i][j]=link_util[i][j]/T;
+			sum+=link_util[i][j];
+		}
+	}
+
+	sum=sum/(N*N);
+
+	cout<<" Average link_util :"<< sum<<endl;
+	return sum;
+
+}
+
 int main(int argc, char** argv) 
 { 
 	int in;
@@ -11,6 +67,12 @@ int main(int argc, char** argv)
 	int T = 10000;
 	double K = 0.6 * N;
 	const char* queue = "INQ";
+	std::vector<int> delay;
+	vector<vector<double> > link_util(N,vector<double> (N,0)); 
+	vector<double> output_avg_sd;
+	string outfile;
+
+
   
     for (int i = 0; i < argc; ++i) {
     	if (strcmp("-N",argv[i])==0)
@@ -36,6 +98,7 @@ int main(int argc, char** argv)
     	} else if (strcmp("-out",argv[i])==0)
     	{
     		cout << argv[i++] << argv[i] << endl;
+    		outfile=argv[i++];
     	} else if (strcmp("-T",argv[i])==0)
     	{
     		cout << argv[i++] << argv[i] << endl;
@@ -46,12 +109,17 @@ int main(int argc, char** argv)
 
     cout << endl << endl;
 
+    ofstream myfile;
+  	myfile.open (outfile+".txt");
+
     if (strcmp("INQ", queue)==0)
     {
 	    
 	    vector<vector<pair<int,int>>> inputbuffer( N );
 
 	    vector<int> inputNum;
+
+	  
 
 		for (int i = 0; i < T; ++i)
 		{
@@ -72,7 +140,13 @@ int main(int argc, char** argv)
 						std::mt19937                        generator(rand_dev());  //Standard mersenne_twister_engine seeded with rand_dev()
 						std::uniform_int_distribution<int>  distr(range_from, range_to);   
 						int num = distr(generator);
-						cout << inputbuffer[inputNum[num]][0].first << "  " << i << endl;
+						//cout << inputbuffer[inputNum[num]][0].first << "  " << i << endl;
+
+						int curr_delay= i - inputbuffer[inputNum[num]][0].first;
+						delay.push_back(curr_delay);
+
+						link_util[inputNum[num]][inputbuffer[inputNum[num]][0].second]++;
+						
 
 						vector<pair<int,int>>::iterator it; 
 
@@ -101,14 +175,30 @@ int main(int argc, char** argv)
 				}
 			}
 		}
+
+
+		calculate_mean_sd(delay,output_avg_sd);
+		double output_link_util=link_utilization(link_util,T);
+
+		cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
+		cout<<N<<"\t\t"<<p<<"\t\t"<<queue<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<output_link_util<<endl;
+
+		myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
+		myfile<<N<<"\t\t"<<p<<"\t\t"<<queue<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<output_link_util<<endl;
+
+		
+
 	}
 
-	if (strcmp("KONQ", queue)==0)
+	if (strcmp("KOUQ", queue)==0)
     {
+
 	    
 	    vector<vector<int>> outputbuffer(N);
 
 	    vector<pair<int,int>> inputNumber;
+
+	    double link_u=0;
 
 		for (int i = 0; i < T; ++i)
 		{
@@ -117,6 +207,10 @@ int main(int argc, char** argv)
 				if (outputbuffer[j].size() > 0)
 				{
 					cout << outputbuffer[j][0] << "  " << i << endl;
+
+					int curr_delay= i - outputbuffer[j][0];
+					delay.push_back(curr_delay);
+					link_u++;
 
 					vector<int>::iterator it; 
 
@@ -160,11 +254,22 @@ int main(int argc, char** argv)
 			}
 			inputNumber.clear();
 		}
+
+		calculate_mean_sd(delay,output_avg_sd);
+		link_u=(link_u/T)/(N*N);
+		//cout<<"Link Util :"<<link_u<<endl;
+
+		cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
+		cout<<N<<"\t\t"<<p<<"\t\t"<<queue<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
+
+		myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
+		myfile<<N<<"\t\t"<<p<<"\t\t"<<queue<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
 	}
 
 	if (strcmp("iSLIP", queue)==0)
     {
 	    
+	    vector<vector<pair<int,int>>> outputbuffer( N );
 
 	    vector<vector<pair<int,int>>> inputbuffer( N );
 
@@ -172,8 +277,7 @@ int main(int argc, char** argv)
 
 	    vector<int> grantPhase(N);
 	    vector<int> acceptPhase(N);
-
-	    vector<vector<pair<int,int>>> outputbuffer( N );
+	    double link_u=0;
 
 		for (int i = 0; i < T; ++i)
 		{
@@ -183,6 +287,9 @@ int main(int argc, char** argv)
 				if (outputbuffer[j].size() > 0)
 				{
 					cout << outputbuffer[j][0].first << "  " << i << endl;
+					int curr_delay=i- outputbuffer[j][0].first;
+					delay.push_back(curr_delay);
+					link_u++;
 
 				    outputbuffer[j].clear();
 				}				 				
@@ -284,6 +391,7 @@ int main(int argc, char** argv)
 									for(int l= 0;l <requestPhase[q].size();l++){
 										if (requestPhase[q][l].second == k)
 										{
+											outputbuffer[k].push_back( make_pair(inputbuffer[j][l].first,j));
 											it = requestPhase[q].begin() + l; 
 						    				requestPhase[q].erase(it);
 										}
@@ -297,7 +405,6 @@ int main(int argc, char** argv)
 								for(int l= 0;l <inputbuffer[j].size();l++){
 									if (inputbuffer[j][l].second == k)
 									{
-										outputbuffer[k].push_back( make_pair(inputbuffer[j][l].first,j)); 
 										it = inputbuffer[j].begin() + l; 
 					    				inputbuffer[j].erase(it);
 										break;
@@ -329,9 +436,20 @@ int main(int argc, char** argv)
 
 			
 		}
+
+
+		calculate_mean_sd(delay,output_avg_sd);
+		link_u=(link_u/T)/(N*N);
+		//cout<<"Link Util :"<<link_u<<endl;
+
+		cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
+		cout<<N<<"\t\t"<<p<<"\t\t"<<queue<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
+
+		myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
+		myfile<<N<<"\t\t"<<p<<"\t\t"<<queue<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
 	}
 
-
+	myfile.close();
     return 0; 
 } 
 
