@@ -116,13 +116,38 @@ int main(int argc, char** argv)
     {
 	    
 	    vector<vector<pair<int,int>>> inputbuffer( N );
-
+	    vector<vector<pair<int,int>>> scheduled( N );
+	    vector<vector<pair<int,int>>> outputbuffer( N );
 	    vector<int> inputNum;
 
 	  
 
 		for (int i = 0; i < T; ++i)
 		{
+			for (int j = 0; j < N; ++j)
+			{
+				if (outputbuffer[j].size() > 0)
+				{
+					cout << outputbuffer[j][0].first << "  " << i << endl;
+					int curr_delay=i- outputbuffer[j][0].first;
+					delay.push_back(curr_delay);
+					link_util[outputbuffer[j][0].second][j]++;
+
+				    outputbuffer[j].clear();
+				}				 				
+			}
+
+			for (int j = 0; j < N; ++j)
+			{
+				if (scheduled[j].size() > 0)
+				{
+					outputbuffer[j].push_back(make_pair(scheduled[j][0].first, scheduled[j][0].second));
+
+				    scheduled[j].clear();
+				}				 				
+			}
+		
+
 			for (int j = 0; j < N; ++j)
 			{
 				inputNum.clear();
@@ -142,15 +167,12 @@ int main(int argc, char** argv)
 						int num = distr(generator);
 						//cout << inputbuffer[inputNum[num]][0].first << "  " << i << endl;
 
-						int curr_delay= i - inputbuffer[inputNum[num]][0].first;
-						delay.push_back(curr_delay);
-
-						link_util[inputNum[num]][inputbuffer[inputNum[num]][0].second]++;
 						
 
 						vector<pair<int,int>>::iterator it; 
 
 					    it = inputbuffer[inputNum[num]].begin(); 
+					    scheduled[inputbuffer[inputNum[num]][0].second].push_back(make_pair(inputbuffer[inputNum[num]][0].first, inputNum[num]));
 					    inputbuffer[inputNum[num]].erase(it); 
 				}
 				inputNum.clear();
