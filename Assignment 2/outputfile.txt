@@ -1,0 +1,2 @@
+N		p		Queue Type	Average PD	Std Dev of PD	Average Link Utilisation
+8		0.5		iSLIP		1.54548		1.08893		0.0620438

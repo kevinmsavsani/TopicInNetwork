@@ -391,7 +391,6 @@ int main(int argc, char** argv)
 									for(int l= 0;l <requestPhase[q].size();l++){
 										if (requestPhase[q][l].second == k)
 										{
-											outputbuffer[k].push_back( make_pair(inputbuffer[j][l].first,j));
 											it = requestPhase[q].begin() + l; 
 						    				requestPhase[q].erase(it);
 										}
@@ -405,6 +404,7 @@ int main(int argc, char** argv)
 								for(int l= 0;l <inputbuffer[j].size();l++){
 									if (inputbuffer[j][l].second == k)
 									{
+										outputbuffer[k].push_back( make_pair(inputbuffer[j][l].first,j));
 										it = inputbuffer[j].begin() + l; 
 					    				inputbuffer[j].erase(it);
 										break;
