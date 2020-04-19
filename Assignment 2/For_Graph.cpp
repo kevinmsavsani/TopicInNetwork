@@ -1,6 +1,5 @@
-
-#include <iomanip>
 #include <bits/stdc++.h>
+
 using namespace std;
 
 int in;
@@ -13,6 +12,9 @@ std::vector<int> delay;
 vector<vector<double> > link_util(N,vector<double> (N,0)); 
 vector<double> output_avg_sd;
 string outfile;
+
+vector<int> x_axis;
+vector<double> y_axis;
 
 void calculate_mean_sd()
 {
@@ -76,6 +78,7 @@ void inq(){
     vector<vector<pair<int,int>>> scheduled( N );
     vector<vector<pair<int,int>>> outputbuffer( N );
     vector<int> inputNum;
+
 	double link_u=0;
 
  
@@ -88,7 +91,7 @@ void inq(){
 				//cout << outputbuffer[j][0].first << "  " << i << endl;
 				int curr_delay=i- outputbuffer[j][0].first;
 				delay.push_back(curr_delay);
-				// link_util[outputbuffer[j][0].second][j]++;
+				//link_util[outputbuffer[j][0].second][j]++;
 				link_u++;
 
 			    outputbuffer[j].clear();
@@ -158,14 +161,16 @@ void inq(){
 
 
 	calculate_mean_sd();
-	// double output_link_util=link_utilization();
+	//double output_link_util=link_utilization();
 	link_u=(link_u/T)/(N*N);
 
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
-	cout<<N<<"\t\t"<<p<<"\t\t"<<"INQ "<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<endl;
+	cout<<N<<"\t\t"<<p<<"\t\t"<<"INQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
 
 	//myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
-	myfile<<N<<"\t\t"<<p<<"\t\t"<<"INQ "<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<endl;	
+	myfile<<N<<"\t\t"<<p<<"\t\t"<<"INQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
+
+	y_axis.push_back(link_u);	
 
 	myfile.close();
 }
@@ -269,10 +274,12 @@ void kouq(){
 	//cout<<"Link Util :"<<link_u<<endl;
 
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<"\t"<<"KOUQ Drop Probability"<<endl;
-	cout<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<"\t\t\t\t"<<fixed<<setprecision(5)<<KOUQ_drop_prob<<endl;
+	cout<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<"\t\t\t\t"<<KOUQ_drop_prob<<endl;
 
 	//myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<"\t"<<"KOUQ Drop Probability"<<endl;
-	myfile<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<"\t\t\t\t"<<fixed<<setprecision(5)<<KOUQ_drop_prob<<endl;
+	myfile<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<"\t\t\t\t"<<KOUQ_drop_prob<<endl;
+
+	y_axis.push_back(link_u);
 	myfile.close();
 
 }
@@ -459,10 +466,12 @@ void islip(){
 	//cout<<"Link Util :"<<link_u<<endl;
 
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
-	cout<<N<<"\t\t"<<p<<"\t\t"<<"iSLIP"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<endl;
+	cout<<N<<"\t\t"<<p<<"\t\t"<<"iSLIP"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
 
 	//myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
-	myfile<<N<<"\t\t"<<p<<"\t\t"<<"iSLIP"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<endl;
+	myfile<<N<<"\t\t"<<p<<"\t\t"<<"iSLIP"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
+
+	y_axis.push_back(link_u);
 	myfile.close();
 
 }
@@ -508,27 +517,50 @@ int main(int argc, char** argv)
     }
     // ./routing -N 8 -B 4 -p 0.5 -queue INQ -K 4.8 -out outputfile -T 10000
 
-	
+
 
     cout << endl << endl;
 
-    if (strcmp("INQ", queue)==0)
-    {
-	    
-	    inq();
+	for(int xs=8;xs<=1024; xs=xs*2)
+	{
+		x_axis.push_back(xs);
+		N=xs;
+
+		if (strcmp("INQ", queue)==0)
+		{
+			
+			inq();
+		}
+
+		if (strcmp("KOUQ", queue)==0)
+		{
+			kouq();
+			
+		}
+
+		if (strcmp("iSLIP", queue)==0)
+		{
+			islip();
+			
+		}
+
+		delay.clear();
+		output_avg_sd.clear();
+
+
 	}
 
-	if (strcmp("KOUQ", queue)==0)
-    {
-    	kouq();
-	    
-	}
+	for(int i=0;i<x_axis.size();i++)
+		cout<<x_axis[i]<<" ";
 
-	if (strcmp("iSLIP", queue)==0)
-    {
-    	islip();
-	    
-	}
+	cout<<endl;
+
+	for(int i=0;i<y_axis.size();i++)
+		cout<<y_axis[i]<<" ";
+
+	cout<<endl;
+
+    
 
     return 0; 
 } 

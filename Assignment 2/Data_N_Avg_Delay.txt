@@ -1,0 +1,34 @@
+Average PD 3.74004
+SD of PD 1.27011
+N               p               Queue Type      Average PD      Std Dev of PD   Average Link Utilisation
+8               0.5             INQ             3.74004         1.27011         0.0619859
+Average PD 3.87188
+SD of PD 1.44559
+N               p               Queue Type      Average PD      Std Dev of PD   Average Link Utilisation
+16              0.5             INQ             3.87188         1.44559         0.0308465
+Average PD 3.93088
+SD of PD 1.52276
+N               p               Queue Type      Average PD      Std Dev of PD   Average Link Utilisation
+32              0.5             INQ             3.93088         1.52276         0.0154689
+Average PD 3.96543
+SD of PD 1.58373
+N               p               Queue Type      Average PD      Std Dev of PD   Average Link Utilisation
+64              0.5             INQ             3.96543         1.58373         0.00771025
+Average PD 3.96952
+SD of PD 1.59087
+N               p               Queue Type      Average PD      Std Dev of PD   Average Link Utilisation
+128             0.5             INQ             3.96952         1.59087         0.00385284
+Average PD 3.97652
+SD of PD 1.60556
+N               p               Queue Type      Average PD      Std Dev of PD   Average Link Utilisation
+256             0.5             INQ             3.97652         1.60556         0.00192571
+Average PD 3.98624
+SD of PD 1.62558
+N               p               Queue Type      Average PD      Std Dev of PD   Average Link Utilisation
+512             0.5             INQ             3.98624         1.62558         0.000962447
+Average PD 3.98564
+SD of PD 1.61762
+N               p               Queue Type      Average PD      Std Dev of PD   Average Link Utilisation
+1024            0.5             INQ             3.98564         1.61762         0.000481446
+8 16 32 64 128 256 512 1024
+0.0619859 0.0308465 0.0154689 0.00771025 0.00385284 0.00192571 0.000962447 0.000481446
