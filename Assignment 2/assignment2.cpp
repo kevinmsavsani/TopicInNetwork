@@ -491,6 +491,7 @@ int main(int argc, char** argv)
     	{
     		cout << argv[i++] << argv[i] << endl;
     		K = atof(argv[i]);
+    		K=K*N*N;
     	} else if (strcmp("-out",argv[i])==0)
     	{
     		cout << argv[i++] << argv[i] << endl;
