@@ -1,2 +1,2 @@
 N		p		Queue Type	Average PD	Std Dev of PD	Average Link Utilisation
-8		0.5		KOUQ		3.42564		0.747263		0.0614188
+8		0.5		KOUQ		3.42012		0.738672		0.0618344
