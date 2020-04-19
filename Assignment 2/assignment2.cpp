@@ -13,7 +13,7 @@ vector<vector<double> > link_util(N,vector<double> (N,0));
 vector<double> output_avg_sd;
 string outfile;
 
-void calculate_mean_sd(std::vector<int> delay,vector<double> &output_avg_sd)
+void calculate_mean_sd()
 {
 	double sum=0;
 	double mean;
@@ -47,7 +47,7 @@ void calculate_mean_sd(std::vector<int> delay,vector<double> &output_avg_sd)
 }
 
 
-double link_utilization(vector<vector<double> > link_util,int T)
+double link_utilization()
 {
 	int N=link_util.size();
 	double sum=0;
@@ -76,15 +76,14 @@ void inq(){
     vector<vector<pair<int,int>>> outputbuffer( N );
     vector<int> inputNum;
 
-  
-
+ 
 	for (int i = 0; i < T; ++i)
 	{
 		for (int j = 0; j < N; ++j)
 		{
 			if (outputbuffer[j].size() > 0)
 			{
-				cout << outputbuffer[j][0].first << "  " << i << endl;
+				//cout << outputbuffer[j][0].first << "  " << i << endl;
 				int curr_delay=i- outputbuffer[j][0].first;
 				delay.push_back(curr_delay);
 				link_util[outputbuffer[j][0].second][j]++;
@@ -155,8 +154,8 @@ void inq(){
 	}
 
 
-	calculate_mean_sd(delay,output_avg_sd);
-	double output_link_util=link_utilization(link_util,T);
+	calculate_mean_sd();
+	double output_link_util=link_utilization();
 
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
 	cout<<N<<"\t\t"<<p<<"\t\t"<<"INQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<output_link_util<<endl;
@@ -178,6 +177,7 @@ void kouq(){
     vector<pair<int,int>> inputNumber;
 
     double link_u=0;
+    double KOUQ_drop_prob=0;
 
 	for (int i = 0; i < T; ++i)
 	{
@@ -185,7 +185,7 @@ void kouq(){
 		{
 			if (outputbuffer[j].size() > 0)
 			{
-				cout << outputbuffer[j][0].first << "  " << i << endl;
+				//cout << outputbuffer[j][0].first << "  " << i << endl;
 
 				int curr_delay= i - outputbuffer[j][0].first;
 				delay.push_back(curr_delay);
@@ -248,17 +248,27 @@ void kouq(){
 		}
 
 
+
+		for(int k=0;k<numOut.size();k++)
+		{
+			if(numOut[k]>K)
+				KOUQ_drop_prob++;
+		}
+
+
 	}
 
-	calculate_mean_sd(delay,output_avg_sd);
+	KOUQ_drop_prob=(KOUQ_drop_prob/N)/T;
+
+	calculate_mean_sd();
 	link_u=(link_u/T)/(N*N);
 	//cout<<"Link Util :"<<link_u<<endl;
 
-	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
-	cout<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
+	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<"\t"<<"KOUQ Drop Probability"<<endl;
+	cout<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<"\t\t"<<KOUQ_drop_prob<<endl;
 
-	myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
-	myfile<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
+	myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<"\t"<<"KOUQ Drop Probability"<<endl;
+	myfile<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<"\t\t"<<KOUQ_drop_prob<<endl;
 	myfile.close();
 
 }
@@ -284,10 +294,9 @@ void islip(){
 		{
 			if (outputbuffer[j].size() > 0)
 			{
-				cout << outputbuffer[j][0].first << "  " << i << endl;
+				//cout << outputbuffer[j][0].first << "  " << i << endl;
 				int curr_delay=i- outputbuffer[j][0].first;
 				delay.push_back(curr_delay);
-				link_util[outputbuffer[j][0].second][j]++;
 				link_u++;
 			    outputbuffer[j].clear();
 			}				 				
@@ -441,7 +450,7 @@ void islip(){
 	}
 
 
-	calculate_mean_sd(delay,output_avg_sd);
+	calculate_mean_sd();
 	link_u=(link_u/T)/(N*N);
 	//cout<<"Link Util :"<<link_u<<endl;
 
@@ -460,8 +469,6 @@ int main(int argc, char** argv)
 { 
 	const char* queue = "INQ";
 
-
-  
     for (int i = 0; i < argc; ++i) {
     	if (strcmp("-N",argv[i])==0)
     	{
@@ -497,7 +504,6 @@ int main(int argc, char** argv)
     // ./routing -N 8 -B 4 -p 0.5 -queue INQ -K 4.8 -out outputfile -T 10000
 
     cout << endl << endl;
-
 
     if (strcmp("INQ", queue)==0)
     {
