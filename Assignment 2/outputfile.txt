@@ -1,2 +1,10 @@
-N		p		Queue Type	Average PD	Std Dev of PD	Average Link Utilisation	KOUQ Drop Probability
-8		0.5		KOUQ		3.42818		0.752801		0.0615938		0
+N		p		Queue Type	Average PD	Std Dev of PD	Average Link Util 	KOUQ Drop Probability
+2		0.5		INQ		3.33383		0.6742		0.0158297
+3		0.5		INQ		3.49417		0.919466		0.0234328
+4		0.5		INQ		3.57404		1.02279		0.0309078
+2		0.5		KOUQ		3.24541		0.489995		0.2504				0
+3		0.5		KOUQ		3.32553		0.595024		0.166222				0
+4		0.5		KOUQ		3.35008		0.645638		0.121881				0
+2		0.5		iSLIP		3.22607		0.572083		0.24915
+3		0.5		iSLIP		3.35374		0.781908		0.164589
+4		0.5		iSLIP		3.42711		0.887318		0.122963

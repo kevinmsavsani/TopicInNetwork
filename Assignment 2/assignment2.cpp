@@ -70,7 +70,7 @@ double link_utilization()
 void inq(){
 
     ofstream myfile;
-  	myfile.open (outfile+".txt");
+  	myfile.open (outfile+".txt",ios::app);
 	vector<vector<pair<int,int>>> inputbuffer( N );
     vector<vector<pair<int,int>>> scheduled( N );
     vector<vector<pair<int,int>>> outputbuffer( N );
@@ -160,7 +160,7 @@ void inq(){
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
 	cout<<N<<"\t\t"<<p<<"\t\t"<<"INQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<output_link_util<<endl;
 
-	myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
+	//myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
 	myfile<<N<<"\t\t"<<p<<"\t\t"<<"INQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<output_link_util<<endl;	
 
 	myfile.close();
@@ -169,7 +169,7 @@ void inq(){
 void kouq(){
 
     ofstream myfile;
-  	myfile.open (outfile+".txt");
+  	myfile.open (outfile+".txt",ios::app);
 	vector<vector<pair<int,int>>> inputbuffer( N );
     vector<vector<pair<int,int>>> scheduled( N );
     vector<vector<pair<int,int>>> outputbuffer(N);
@@ -265,10 +265,10 @@ void kouq(){
 	//cout<<"Link Util :"<<link_u<<endl;
 
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<"\t"<<"KOUQ Drop Probability"<<endl;
-	cout<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<"\t\t"<<KOUQ_drop_prob<<endl;
+	cout<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<"\t\t\t\t"<<KOUQ_drop_prob<<endl;
 
-	myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<"\t"<<"KOUQ Drop Probability"<<endl;
-	myfile<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<"\t\t"<<KOUQ_drop_prob<<endl;
+	//myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<"\t"<<"KOUQ Drop Probability"<<endl;
+	myfile<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<"\t\t\t\t"<<KOUQ_drop_prob<<endl;
 	myfile.close();
 
 }
@@ -276,7 +276,7 @@ void kouq(){
 void islip(){
 
     ofstream myfile;
-  	myfile.open (outfile+".txt");
+  	myfile.open (outfile+".txt",ios::app);
   	vector<int> grantPhase(N);
     vector<int> acceptPhase(N);
     double link_u=0;
@@ -457,7 +457,7 @@ void islip(){
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
 	cout<<N<<"\t\t"<<p<<"\t\t"<<"iSLIP"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
 
-	myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
+	//myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
 	myfile<<N<<"\t\t"<<p<<"\t\t"<<"iSLIP"<<"\t\t"<<output_avg_sd[0]<<"\t\t"<<output_avg_sd[1]<<"\t\t"<<link_u<<endl;
 	myfile.close();
 
@@ -491,7 +491,7 @@ int main(int argc, char** argv)
     	{
     		cout << argv[i++] << argv[i] << endl;
     		K = atof(argv[i]);
-    		K=K*N*N;
+    		K=K*N;
     	} else if (strcmp("-out",argv[i])==0)
     	{
     		cout << argv[i++] << argv[i] << endl;
