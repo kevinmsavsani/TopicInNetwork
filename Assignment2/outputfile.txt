@@ -1,2 +1,1 @@
 N		p		Queue Type	Average PD	Std Dev of PD	Average Link Util 	KOUQ Drop Probability
-8		0.5		iSLIP		3.55097		1.08051			0.49438
