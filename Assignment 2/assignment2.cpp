@@ -3,16 +3,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int in;
-int N = 8;
-int B = 4;
-double p = 0.5;
-int T = 10000;
-double K = 0.6 * N;
-std::vector<int> delay;
-vector<vector<double> > link_util(N,vector<double> (N,0)); 
+int N = 8;		// Number of switch input and output ports
+int B = 4;		// Buffer size
+double p = 0.5;	// Packet generation probability
+int T = 10000;	// simulation time
+double K = 0.6 * N;	// maximum packet that can arrive in a slot for a particular output port
+
+std::vector<int> delay;	// stores sum packet delay for all output port
+vector<vector<double> > link_util(N,vector<double> (N,0));	// stores link utilisation for each link 
 vector<double> output_avg_sd;
-string outfile;
+string outfile;	// output file name
 
 void calculate_mean_sd()
 {
@@ -29,7 +29,6 @@ void calculate_mean_sd()
 
 	mean=sum/n;
 
-	cout<<"Average PD "<<mean<<endl;
 	output_avg_sd.push_back(mean);
 
 	for(int i=0;i<n;i++)
@@ -41,7 +40,6 @@ void calculate_mean_sd()
 
 	sd=sqrt(sd/n);
 
-	cout<<"SD of PD "<<sd<<endl;
 	output_avg_sd.push_back(sd);
 
 
@@ -63,80 +61,80 @@ double link_utilization()
 
 	sum=sum/(N*N);
 
-	cout<<" Average link_util :"<< sum<<endl;
 	return sum;
 
 }
 
-void inq(){
 
+// function for INQ queue scheduling technique
+void INQ()
+{
     ofstream myfile;
   	myfile.open (outfile+".txt",ios::app);
-	vector<vector<pair<int,int>>> inputbuffer( N );
-    vector<vector<pair<int,int>>> scheduled( N );
-    vector<vector<pair<int,int>>> outputbuffer( N );
-    vector<int> inputNum;
-	double link_u=0;
 
- 
+	vector<vector<pair<int,int>>> inputbuffer( N );		// packet generated are stored in this buffer till they are scheduled
+    vector<vector<pair<int,int>>> scheduled( N );		// packet scheduled are stored in this till they are transmitted to outputbuffer
+    vector<vector<pair<int,int>>> outputbuffer( N );	// packet are stored in this buffer for each output port
+
+    vector<int> outputNum;	// It stores all output number present in start of inputbuffer which can be transmitted to outputbuffer
+	double link_u=0;	// stores number of links utilised
+
+	// Each i represent a time slot
 	for (int i = 0; i < T; ++i)
 	{
-		for (int j = 0; j < N; ++j)
+		for (int j = 0; j < N; ++j)	// for all output port
 		{
-			if (outputbuffer[j].size() > 0)
+			if (outputbuffer[j].size() > 0)	// if packet exist at output port j
 			{
-				//cout << outputbuffer[j][0].first << "  " << i << endl;
-				int curr_delay=i- outputbuffer[j][0].first;
-				delay.push_back(curr_delay);
-				// link_util[outputbuffer[j][0].second][j]++;
-				link_u++;
+				int curr_delay=i - outputbuffer[j][0].first;	// get time packet spent in transmission
+				delay.push_back(curr_delay);	// stores all delays
+				link_u++;	// one link utilised here
 
-			    outputbuffer[j].clear();
+			    outputbuffer[j].clear();	// removes packet which finishes transmission 
 			}				 				
 		}
 
-		for (int j = 0; j < N; ++j)
+		// for packet transmission
+		for (int j = 0; j < N; ++j)	// for all output port
 		{
-			if (scheduled[j].size() > 0)
+			if (scheduled[j].size() > 0)	// if packet exist for output port j
 			{
-				outputbuffer[j].push_back(make_pair(scheduled[j][0].first, scheduled[j][0].second));
-
-			    scheduled[j].clear();
+				outputbuffer[j].push_back(make_pair(scheduled[j][0].first, scheduled[j][0].second));	// passes from scheduled to outputbuffer
+			    scheduled[j].clear();	// removes packet which is transmitted 
 			}				 				
 		}
 	
-
-		for (int j = 0; j < N; ++j)
+		// for packet scheduling
+		for (int j = 0; j < N; ++j)	// for all output port
 		{
-			inputNum.clear();
-			for (int k = 0; k < N; ++k)
+			outputNum.clear();
+			for (int k = 0; k < N; ++k)	// for all input port 
 			{
 				if(inputbuffer[k].size() > 0 && inputbuffer[k][0].second == j){
-					inputNum.push_back(k);
+					outputNum.push_back(k);	// get all input port which has first packet to be transmitted to j output port
 				}
 			}
-			if (inputNum.size() > 0)
+
+			if (outputNum.size() > 0) // check if output exist to port j
 			{
 				    int range_from  = 0;
-					int range_to    = inputNum.size()-1;
+					int range_to    = outputNum.size()-1;
 					std::random_device                  rand_dev;  //Will be used to obtain a seed for the random number engine
 					std::mt19937                        generator(rand_dev());  //Standard mersenne_twister_engine seeded with rand_dev()
 					std::uniform_int_distribution<int>  distr(range_from, range_to);   
 					int num = distr(generator);
-					//cout << inputbuffer[inputNum[num]][0].first << "  " << i << endl;
-
-					
 
 					vector<pair<int,int>>::iterator it; 
 
-				    it = inputbuffer[inputNum[num]].begin(); 
-				    scheduled[inputbuffer[inputNum[num]][0].second].push_back(make_pair(inputbuffer[inputNum[num]][0].first, inputNum[num]));
-				    inputbuffer[inputNum[num]].erase(it); 
+				    it = inputbuffer[outputNum[num]].begin(); 
+				    scheduled[inputbuffer[outputNum[num]][0].second].push_back(make_pair(inputbuffer[outputNum[num]][0].first, outputNum[num]));	// passes from inputbuffer to scheduled 
+				    inputbuffer[outputNum[num]].erase(it); 	// removes packet from input buffer
 			}
-			inputNum.clear();
+			outputNum.clear();
 		}
 
-		for (int j = 0; j < N; ++j)
+		// for generating packet
+		for (int j = 0; j < N; ++j)	// for all input port  
 		{
 			const int range_from  = 0;
 			const int range_to    = 999;
@@ -151,88 +149,97 @@ void inq(){
 				std::mt19937                        gen(r_d());  //Standard mersenne_twister_engine seeded with rand_dev()
 				std::uniform_int_distribution<int>  dis(range_from, range_to);    
 
-				inputbuffer[j].push_back( make_pair(i,dis(gen)));     //Use dis to transform the random unsigned int generated by gen into an int in [range_from, range_to]
+				// Use dis to transform the random unsigned int generated by gen into an int in [range_from, range_to]
+				inputbuffer[j].push_back( make_pair(i,dis(gen)));     
 			}
 		}
 	}
 
 
 	calculate_mean_sd();
-	// double output_link_util=link_utilization();
 	link_u=(link_u/T)/(N*N);
 
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
 	cout<<N<<"\t\t"<<p<<"\t\t"<<"INQ "<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<endl;
 
-	//myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
 	myfile<<N<<"\t\t"<<p<<"\t\t"<<"INQ "<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<endl;	
 
 	myfile.close();
 }
 
-void kouq(){
+// function for KOUQ queue scheduling technique
+void KOUQ(){
 
     ofstream myfile;
   	myfile.open (outfile+".txt",ios::app);
-	vector<vector<pair<int,int>>> inputbuffer( N );
-    vector<vector<pair<int,int>>> scheduled( N );
-    vector<vector<pair<int,int>>> outputbuffer(N);
 
-    vector<pair<int,int>> inputNumber;
+	vector<vector<pair<int,int>>> inputbuffer( N );		// packet generated are stored in this buffer till they are scheduled
+    vector<vector<pair<int,int>>> scheduled( N );		// packet scheduled are stored in this till they are transmitted to outputbuffer
+    vector<vector<pair<int,int>>> outputbuffer( N );	// packet are stored in this buffer for each output port
 
-    double link_u=0;
+    vector<pair<int,int>> inputNumber;	// stores input port with its probability of being scheduled
+
+	double link_u=0;	// stores number of links utilised
     double KOUQ_drop_prob=0;
 
+	// Each i represent a time slot
 	for (int i = 0; i < T; ++i)
 	{
-		for (int j = 0; j < N; ++j)
+		for (int j = 0; j < N; ++j)	// for all output port
 		{
-			if (outputbuffer[j].size() > 0)
+			if (outputbuffer[j].size() > 0)	// if packet exist at output port j
 			{
-				//cout << outputbuffer[j][0].first << "  " << i << endl;
+				int curr_delay=i - outputbuffer[j][0].first;	// get time packet spent in transmission
+				delay.push_back(curr_delay);	// stores all delays
+				link_u++;	// one link utilised here
 
-				int curr_delay= i - outputbuffer[j][0].first;
-				delay.push_back(curr_delay);
-				link_u++;
-
-				vector<pair<int,int>>::iterator it; 
+			    vector<pair<int,int>>::iterator it; 
 
 			    it = outputbuffer[j].begin(); 
-			    outputbuffer[j].erase(it);
+			    outputbuffer[j].erase(it);	// removes packet which finishes transmission 
 			}
-			 
-			
 		}
 
-		for (int j = 0; j < N; ++j)
+		// for packet transmission
+		for (int j = 0; j < N; ++j)	// for all output port
 		{
-			if (scheduled[j].size() > 0)
+			if (scheduled[j].size() > 0)	// if packet exist for output port j
 			{
 				for (int k = 0; k < scheduled[j].size(); ++k)
 				{
-					outputbuffer[j].push_back(make_pair(scheduled[j][k].first, scheduled[j][k].second));
+					outputbuffer[j].push_back(make_pair(scheduled[j][k].first, scheduled[j][k].second));	// passes from scheduled to outputbuffer
 				}
-
 			    scheduled[j].clear();
 			}				 				
 		}
 
+
+		// for scheduling we gave each input port a number uniformly and we sorted it and smaller the number higher is the probability to be scheduled is used here.
 		sort(inputNumber.begin(),inputNumber.end());
 
-		vector<int> numOut(N,0);
+		vector<int> numOut(N,0);	// for each output port count number of packet to be transmitted to it in a time slot
 
 		for (int j = 0; j < inputNumber.size(); ++j)
 		{
 			numOut[inputbuffer[inputNumber[j].second][0].second]++;
+			// checks that number of packet to an output port cannot be greater than K in a given time stamp
 			if (numOut[inputbuffer[inputNumber[j].second][0].second]<K && (outputbuffer[inputbuffer[inputNumber[j].second][0].second].size()+scheduled[inputbuffer[inputNumber[j].second][0].second].size())<B)
 			{
+				//// passes from inputbuffer to scheduled and remove from input buffer
 				scheduled[inputbuffer[inputNumber[j].second][0].second].push_back(make_pair(inputbuffer[inputNumber[j].second][0].first, inputbuffer[inputNumber[j].second][0].second));
 				inputbuffer[inputNumber[j].second].clear();
 			}				
 		}
 		inputNumber.clear();
 
-		for (int j = 0; j < N; ++j)
+		for(int k=0;k<numOut.size();k++)
+		{
+			if(numOut[k]>K)
+				KOUQ_drop_prob++;
+		}
+
+		// for packet generation
+		for (int j = 0; j < N; ++j) // for each input port
 		{
 			const int range_from  = 0;
 			const int range_to    = 10000;
@@ -250,69 +257,59 @@ void kouq(){
 				inputNumber.push_back( make_pair(dis(gen),j));     //Use dis to transform the random unsigned int generated by gen into an int in [range_from, range_to]
 			}								
 		}
-
-
-
-		for(int k=0;k<numOut.size();k++)
-		{
-			if(numOut[k]>K)
-				KOUQ_drop_prob++;
-		}
-
-
 	}
 
 	KOUQ_drop_prob=(KOUQ_drop_prob/N)/T;
 
 	calculate_mean_sd();
 	link_u=(link_u/T)/(N*N);
-	//cout<<"Link Util :"<<link_u<<endl;
 
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<"\t"<<"KOUQ Drop Probability"<<endl;
 	cout<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<"\t\t\t\t"<<fixed<<setprecision(5)<<KOUQ_drop_prob<<endl;
 
-	//myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<"\t"<<"KOUQ Drop Probability"<<endl;
 	myfile<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<"\t\t\t\t"<<fixed<<setprecision(5)<<KOUQ_drop_prob<<endl;
 	myfile.close();
 
 }
 
-void islip(){
+// function for iSLIP queue scheduling technique
+void iSLIP(){
 
     ofstream myfile;
   	myfile.open (outfile+".txt",ios::app);
+
   	vector<int> grantPhase(N);
     vector<int> acceptPhase(N);
-    double link_u=0;
+	double link_u=0;	// stores number of links utilised
 
-	vector<vector<pair<int,int>>> inputbuffer( N );
-    vector<vector<pair<int,int>>> scheduled( N );
-    vector<vector<pair<int,int>>> outputbuffer( N );
+	vector<vector<pair<int,int>>> inputbuffer( N );		// packet generated are stored in this buffer till they are scheduled
+    vector<vector<pair<int,int>>> scheduled( N );		// packet scheduled are stored in this till they are transmitted to outputbuffer
+    vector<vector<pair<int,int>>> outputbuffer( N );	// packet are stored in this buffer for each output port
+
     vector<int> inputNum;
 
-  
-
+	// Each i represent a time slot
 	for (int i = 0; i < T; ++i)
 	{
-		for (int j = 0; j < N; ++j)
+		for (int j = 0; j < N; ++j)	// for all output port
 		{
-			if (outputbuffer[j].size() > 0)
+			if (outputbuffer[j].size() > 0)	// if packet exist at output port j
 			{
-				//cout << outputbuffer[j][0].first << "  " << i << endl;
-				int curr_delay=i- outputbuffer[j][0].first;
-				delay.push_back(curr_delay);
-				link_u++;
-			    outputbuffer[j].clear();
+				int curr_delay=i - outputbuffer[j][0].first;	// get time packet spent in transmission
+				delay.push_back(curr_delay);	// stores all delays
+				link_u++;	// one link utilised here
+
+			    outputbuffer[j].clear();	// removes packet which finishes transmission 
 			}				 				
 		}
 
-		for (int j = 0; j < N; ++j)
+		// for packet transmission
+		for (int j = 0; j < N; ++j)	// for all output port
 		{
-			if (scheduled[j].size() > 0)
+			if (scheduled[j].size() > 0)	// if packet exist for output port j
 			{
-				outputbuffer[j].push_back(make_pair(scheduled[j][0].first, scheduled[j][0].second));
-
-			    scheduled[j].clear();
+				outputbuffer[j].push_back(make_pair(scheduled[j][0].first, scheduled[j][0].second));	// passes from scheduled to outputbuffer
+			    scheduled[j].clear();	// removes packet which is transmitted 
 			}				 				
 		}
 
@@ -322,23 +319,8 @@ void islip(){
 		acceptPhase.assign(N,-1);
 
 		while (true){
-			// cin >> in;
-
-			// cout << endl << endl << "requestPhase" << endl;
 
 			int r = 0;
-			// cout << endl << endl ;
-			// for (r = 0; r < N; ++r)
-			// {
-			// 	cout << "row "  << r << endl;
-			// 	for (int s = 0; s < requestPhase[r].size(); ++s)
-			// 	{
-			// 		cout << requestPhase[r][s].first  <<  "   " << r << "   "  << requestPhase[r][s].second << endl;
-			// 	}
-			// }
-
-
-			// cout << endl << endl << "grantPhase" << endl;
 
 			grantPhase.assign(N,-1);
 			int addNum = 0;
@@ -353,12 +335,10 @@ void islip(){
 					if (requestPhase[(addNum +k )% N].size() > 0)
 					{
 						for(int l= 0;l <requestPhase[(addNum +k )% N].size();l++){
-							//cout << requestPhase[(addNum +k )% N][l].second << "   "  << j << endl;
 							if (requestPhase[(addNum +k )% N][l].second == j)
 							{
 								grantPhase[j] = (addNum +k )% N;
 								addNum = grantPhase[j] +1;
-								// cout << j << "   "  << grantPhase[j] << endl;
 								break;
 							}
 						}
@@ -366,8 +346,6 @@ void islip(){
 					
 				}
 			}
-
-			// cout << endl << endl << "acceptPhase" << endl;
 
 			for (int j = 0; j < N; ++j)   // j for input port
 			{
@@ -380,7 +358,6 @@ void islip(){
 					if (grantPhase[k] == j)
 					{
 						acceptPhase[j] = k;
-						// cout << j << "   "<< acceptPhase[j] << endl;
 						requestPhase[j].clear(); 
 
 						vector<pair<int,int>>::iterator it; 
@@ -431,8 +408,9 @@ void islip(){
 
 		}
 	
-		//cout << "Time  " << i << endl;
-		for (int j = 0; j < N; ++j)
+
+		// for packet generation
+		for (int j = 0; j < N; ++j) // for each input port
 		{
 			const int range_from  = 0;
 			const int range_to    = 999;
@@ -456,78 +434,68 @@ void islip(){
 
 	calculate_mean_sd();
 	link_u=(link_u/T)/(N*N);
-	//cout<<"Link Util :"<<link_u<<endl;
 
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
 	cout<<N<<"\t\t"<<p<<"\t\t"<<"iSLIP"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<endl;
 
-	//myfile<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
 	myfile<<N<<"\t\t"<<p<<"\t\t"<<"iSLIP"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<endl;
 	myfile.close();
 
 }
 
-
-
 int main(int argc, char** argv) 
 { 
 	const char* queue = "INQ";
-
+	outfile="outputfile";
     for (int i = 0; i < argc; ++i) {
     	if (strcmp("-N",argv[i])==0)
     	{
-    		cout << argv[i++] << argv[i] << endl;
+    		i++;
     		N = atoi(argv[i]);
     		K = 0.6 * N;
     	} else if (strcmp("-B",argv[i])==0)
     	{
-    		cout << argv[i++] << argv[i] << endl;
+    		i++;
     		B = atoi(argv[i]);
     	} else if (strcmp("-p",argv[i])==0)
     	{
-    		cout << argv[i++] << argv[i] << endl;
+    		i++;
     		p = atof(argv[i]);
     	} else if (strcmp("-queue",argv[i])==0)
     	{
-    		cout << argv[i++] << argv[i] << endl;
+    		i++;
     		queue = argv[i];
     	} else if (strcmp("-K",argv[i])==0)
     	{
-    		cout << argv[i++] << argv[i] << endl;
+    		i++;
     		K = atof(argv[i]);
     		K=K*N;
     	} else if (strcmp("-out",argv[i])==0)
     	{
-    		cout << argv[i++] << argv[i] << endl;
-    		outfile=argv[i++];
+    		i++;
+    		outfile=argv[i];
     	} else if (strcmp("-T",argv[i])==0)
     	{
-    		cout << argv[i++] << argv[i] << endl;
+    		i++;
     		T = atoi(argv[i]);
     	}
-    }
-    // ./routing -N 8 -B 4 -p 0.5 -queue INQ -K 4.8 -out outputfile -T 10000
-
-	
+    }	
 
     cout << endl << endl;
 
     if (strcmp("INQ", queue)==0)
     {
-	    
-	    inq();
+	    INQ();
 	}
 
 	if (strcmp("KOUQ", queue)==0)
     {
-    	kouq();
-	    
+    	KOUQ();	    
 	}
 
 	if (strcmp("iSLIP", queue)==0)
     {
-    	islip();
-	    
+    	iSLIP();	    
 	}
 
     return 0; 
