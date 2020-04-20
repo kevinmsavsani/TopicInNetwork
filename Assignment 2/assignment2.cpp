@@ -10,7 +10,6 @@ int T = 10000;	// simulation time
 double K = 0.6 * N;	// maximum packet that can arrive in a slot for a particular output port
 
 std::vector<int> delay;	// stores sum packet delay for all output port
-vector<vector<double> > link_util(N,vector<double> (N,0));	// stores link utilisation for each link 
 vector<double> output_avg_sd;
 string outfile;	// output file name
 
@@ -45,25 +44,6 @@ void calculate_mean_sd()
 
 }
 
-
-double link_utilization()
-{
-	int N=link_util.size();
-	double sum=0;
-	for(int i=0;i<N;i++)
-	{
-		for(int j=0;j<N;j++)
-		{
-			link_util[i][j]=link_util[i][j]/T;
-			sum+=link_util[i][j];
-		}
-	}
-
-	sum=sum/(N*N);
-
-	return sum;
-
-}
 
 
 // function for INQ queue scheduling technique
@@ -157,7 +137,7 @@ void INQ()
 
 
 	calculate_mean_sd();
-	link_u=(link_u/T)/(N*N);
+	link_u=link_u/(T*N);
 
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
 	cout<<N<<"\t\t"<<p<<"\t\t"<<"INQ "<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<endl;
@@ -262,12 +242,12 @@ void KOUQ(){
 	KOUQ_drop_prob=(KOUQ_drop_prob/N)/T;
 
 	calculate_mean_sd();
-	link_u=(link_u/T)/(N*N);
+	link_u=link_u/(T*N);
 
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<"\t"<<"KOUQ Drop Probability"<<endl;
-	cout<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<"\t\t\t\t"<<fixed<<setprecision(5)<<KOUQ_drop_prob<<endl;
+	cout<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<"\t\t\t\t"<<KOUQ_drop_prob<<endl;
 
-	myfile<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<"\t\t\t\t"<<fixed<<setprecision(5)<<KOUQ_drop_prob<<endl;
+	myfile<<N<<"\t\t"<<p<<"\t\t"<<"KOUQ"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<"\t\t\t\t"<<KOUQ_drop_prob<<endl;
 	myfile.close();
 
 }
@@ -433,7 +413,7 @@ void iSLIP(){
 
 
 	calculate_mean_sd();
-	link_u=(link_u/T)/(N*N);
+	link_u=link_u/(T*N);
 
 	cout<<"N"<<"\t\t"<<"p"<<"\t\t"<<"Queue Type"<<"\t"<<"Average PD"<<"\t"<<"Std Dev of PD"<<"\t"<<"Average Link Utilisation"<<endl;
 	cout<<N<<"\t\t"<<p<<"\t\t"<<"iSLIP"<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[0]<<"\t\t"<<fixed<<setprecision(5)<<output_avg_sd[1]<<"\t\t\t"<<fixed<<setprecision(5)<<link_u<<endl;
