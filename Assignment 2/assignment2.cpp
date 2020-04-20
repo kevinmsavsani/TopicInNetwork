@@ -258,8 +258,6 @@ void iSLIP(){
     ofstream myfile;
   	myfile.open (outfile+".txt",ios::app);
 
-  	vector<int> grantPhase(N);
-    vector<int> acceptPhase(N);
 	double link_u=0;	// stores number of links utilised
 
 	vector<vector<pair<int,int>>> inputbuffer( N );		// packet generated are stored in this buffer till they are scheduled
@@ -292,33 +290,39 @@ void iSLIP(){
 			    scheduled[j].clear();	// removes packet which is transmitted 
 			}				 				
 		}
+		
+		vector<int> grantPhase(N);	// stores output of grant phase
+    	vector<int> acceptPhase(N);	// stores output of accept phase
+		vector<vector<pair<int,int>>> requestPhase( N );	// stores input for request phase
 
-		vector<vector<pair<int,int>>> requestPhase( N );
-		requestPhase = inputbuffer;
+		requestPhase = inputbuffer;	// initialise requestphase with inputbuffer
 
 		acceptPhase.assign(N,-1);
 
-		while (true){
-
-			int r = 0;
-
+		// run till complete scheduling is done
+		while (true)
+		{
 			grantPhase.assign(N,-1);
-			int addNum = 0;
+			int addNum = 0;	// selection in grant phase of input port is round robin so addNum store previous number
+
+			// grant phase output is generated from request phase
 			for (int j = 0; j < N; ++j)   // j for output port
 			{
 				for (int k = 0; k < N; ++k)   // k for input port
 				{
+					// check if output port j is already granted
 					if (grantPhase[j]!= -1)
 					{
 						break;
 					}
-					if (requestPhase[(addNum +k )% N].size() > 0)
+					if (requestPhase[(addNum +k )% N].size() > 0)	 
 					{
 						for(int l= 0;l <requestPhase[(addNum +k )% N].size();l++){
+							// checks if input port (addNum+k)%N has packet for output port j
 							if (requestPhase[(addNum +k )% N][l].second == j)
 							{
 								grantPhase[j] = (addNum +k )% N;
-								addNum = grantPhase[j] +1;
+								addNum = grantPhase[j]+1; // stores round robin start value for next iteration
 								break;
 							}
 						}
@@ -327,18 +331,23 @@ void iSLIP(){
 				}
 			}
 
+			// accept phase output is generated from grant phase
+			// request phase for next iteration is updated
 			for (int j = 0; j < N; ++j)   // j for input port
 			{
 				for (int k = 0; k < N; ++k)   // k for output port
 				{
+					// check if input port j is already accepted				
 					if (acceptPhase[j] != -1)
 					{
 						break;
 					}
+					// check if output port k is granted to input port j
 					if (grantPhase[k] == j)
 					{
 						acceptPhase[j] = k;
-						requestPhase[j].clear(); 
+
+						requestPhase[j].clear(); // input port j is cleared for next iteration in request phase
 
 						vector<pair<int,int>>::iterator it; 
 
@@ -350,7 +359,7 @@ void iSLIP(){
 									if (requestPhase[q][l].second == k)
 									{
 										it = requestPhase[q].begin() + l; 
-					    				requestPhase[q].erase(it);
+					    				requestPhase[q].erase(it);	// removes output port k from every input for next iteration in request phase
 									}
 								}
 							}
@@ -364,7 +373,7 @@ void iSLIP(){
 								{
 									scheduled[k].push_back( make_pair(inputbuffer[j][l].first,j));
 									it = inputbuffer[j].begin() + l; 
-				    				inputbuffer[j].erase(it);
+				    				inputbuffer[j].erase(it); // removes output port k from inputbuffer as it is accepted
 									break;
 								}
 							}
@@ -373,7 +382,9 @@ void iSLIP(){
 				}
 				
 			}
-			
+
+			// it check if all input port of request phase are empty or not. if empty then scheduling is completed
+			int r = 0;			
 			for (r = 0; r < N; ++r)
 			{
 				if (requestPhase[r].size() > 0)
@@ -385,7 +396,6 @@ void iSLIP(){
 			{
 				break;
 			}
-
 		}
 	
 
